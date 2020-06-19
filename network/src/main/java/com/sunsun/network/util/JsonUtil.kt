@@ -50,7 +50,7 @@ class JsonUtil {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.getStackTraceString(e)
+            Log.e("NetworkTemplate", Log.getStackTraceString(e))
         }
         return result
     }

@@ -59,7 +59,7 @@ class OKHttpFactory<T : INetworkTemplate> :
     }
 
     override fun createSSLSocketFactory(): SSLSocketFactory? {
-        var sSLSocketFactory: SSLSocketFactory? = null
+        var sSLSocketFactory: SSLSocketFactory? =null;
         try {
             val sc = SSLContext.getInstance("TLS")
             sc.init(
@@ -85,7 +85,6 @@ class OKHttpFactory<T : INetworkTemplate> :
 
     fun factoryHttpManager(httpImpl: Int) = when (httpImpl) {
         HTTP_IMPL_OK_HTTP -> {
-//            mHttpManager = (mOkHttpClient.let { OKHttpManager(it) }) as T
             mINetworkTemplate = NetworkTemplate(
                 mOkHttpClient!!
             ) as T
@@ -94,12 +93,6 @@ class OKHttpFactory<T : INetworkTemplate> :
 
         } else ->{
 
-        }
-    }
-
-    override fun evictAllRequest() {
-        if (mINetworkTemplate != null) {
-            mINetworkTemplate?.evictAll()
         }
     }
 
@@ -126,6 +119,12 @@ class OKHttpFactory<T : INetworkTemplate> :
             }
         }
         sNetStateReceiver = null
+    }
+
+    override fun evictAllRequest() {
+        if (mINetworkTemplate != null) {
+            mINetworkTemplate?.evictAll()
+        }
     }
 
 

@@ -14,7 +14,7 @@ import java.lang.reflect.Type
 
 class NetworkTemplate : INetworkTemplate {
 
-    protected val TAG = "OKHttpManager"
+    protected val TAG = "NetworkTemplate"
     protected val JSON =
         MediaType.parse("application/json; charset=utf-8")
 

@@ -1,42 +1,38 @@
 package com.sunsun.tools.demo.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.sunsun.tools.R
 import com.sunsun.tools.basemvvm.ui.BaseMVVMActivity
-import com.sunsun.tools.databinding.ActivityLoginBinding
-import com.sunsun.tools.demo.bean.CodeLoginReq
-import com.sunsun.tools.demo.viewmodel.impl.LoginViewModel
+import com.sunsun.tools.databinding.ActivityAppinfoBinding
+import com.sunsun.tools.demo.bean.AppInfoReq
+import com.sunsun.tools.demo.viewmodel.impl.AppInfoViewModel
+import kotlinx.android.synthetic.main.activity_appinfo.*
 
-class LoginActivity : BaseMVVMActivity<LoginViewModel, ActivityLoginBinding>() {
+class AppInfoActivity : BaseMVVMActivity<AppInfoViewModel, ActivityAppinfoBinding>() {
 
-    var TAG: String? = LoginActivity::class.simpleName
+    var TAG: String? = AppInfoActivity::class.simpleName
 
 
     override fun layoutID(): Int {
-        return R.layout.activity_login
+        return R.layout.activity_appinfo
     }
 
-    override fun obtainViewModel(): LoginViewModel {
-        return LoginViewModel(application)
+    override fun obtainViewModel(): AppInfoViewModel {
+        return AppInfoViewModel(application)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var codeLoginReq = CodeLoginReq(
-            "18665051225",
-            "123",
-            "123",
-            grantType = 123,
-            subChannel = "vivo",
-            deviceType = 1
+        var appInfoReq = AppInfoReq(
+            "18665051225"
         )
-        viewMode.loginByVerifyCode(codeLoginReq)
+        viewMode.getConfigInfo(appInfoReq)
         viewMode.ResultLiveData?.observe(this, Observer {
-            Log.d(TAG, "" + it)
+//            Log.d(TAG, it?.toString())
             Toast.makeText(LoginActivity@ this, it?.toString(), Toast.LENGTH_SHORT).show()
+            app_info.setText(it?.toString())
         })
         viewMode.errorResultLiveData?.observe(this, Observer {
             Toast.makeText(LoginActivity@ this, it, Toast.LENGTH_SHORT).show()

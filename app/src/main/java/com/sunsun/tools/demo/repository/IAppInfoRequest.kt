@@ -3,13 +3,15 @@ package com.sunsun.tools.demo.repository
 import com.sunsun.network.bean.BaseLoanResp
 import com.sunsun.network.callback.IHttpCallBack
 import com.sunsun.tools.basenetwork.IBaseRequest
+import com.sunsun.tools.demo.bean.AppInfoReq
+import com.sunsun.tools.demo.bean.AppInfoResp
 import com.sunsun.tools.demo.bean.CodeLoginReq
 import com.sunsun.tools.demo.bean.CodeLoginResp
 
-interface ILoginRequest : IBaseRequest {
+interface IAppInfoRequest : IBaseRequest {
 
     /**
-     * 登录请求
+     * 初始化
      */
-    fun loginByCode(data: CodeLoginReq?,  callBack: IHttpCallBack<BaseLoanResp<CodeLoginResp>>?)
+    fun getAppInfo(data: AppInfoReq?, callBack: IHttpCallBack<BaseLoanResp<AppInfoResp>>?)
 }

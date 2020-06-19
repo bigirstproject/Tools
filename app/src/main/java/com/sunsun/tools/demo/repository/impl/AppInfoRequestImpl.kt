@@ -6,26 +6,25 @@ import com.sunsun.network.callback.IHttpCallBack
 import com.sunsun.network.template.INetworkTemplate
 import com.sunsun.network.template.OKHttpFactory
 import com.sunsun.tools.basemvvm.repository.BaseRepository
-import com.sunsun.tools.demo.bean.CodeLoginReq
-import com.sunsun.tools.demo.bean.CodeLoginResp
-import com.sunsun.tools.demo.repository.ILoginRequest
+import com.sunsun.tools.demo.bean.AppInfoReq
+import com.sunsun.tools.demo.bean.AppInfoResp
+import com.sunsun.tools.demo.repository.IAppInfoRequest
 
-class LoginRequestImpl : BaseRepository(), ILoginRequest {
+class AppInfoRequestImpl : BaseRepository(), IAppInfoRequest {
 
     private val mHttpManager: INetworkTemplate? = OKHttpFactory.instance.getBusinessHttpManger()
 
 
-    override fun loginByCode(
-        data: CodeLoginReq?,
-        callBack: IHttpCallBack<BaseLoanResp<CodeLoginResp>>?
+    override fun getAppInfo(
+        data: AppInfoReq?,
+        callBack: IHttpCallBack<BaseLoanResp<AppInfoResp>>?
     ) {
-//        val url = "https://zstzxd.zhiyoutec.com/harbor/userbase/agreements?b=2&c=2&ch=133"
-        val url = " https://zstzxd.zhiyoutec.com//harbor/userbase/register/verifycode?b=2&c=2&ch=133"
-        val typeToken = object : TypeToken<BaseLoanResp<CodeLoginResp>>() {}
+        val url = "https://zstzxd.zhiyoutec.com/harbor/userbase/agreements?b=2&c=2&ch=133"
+        val typeToken = object : TypeToken<BaseLoanResp<AppInfoResp>>() {}
         mHttpManager?.post(
             url
             , data
-            , BaseLoanResp<CodeLoginResp>()::class.java,
+            , BaseLoanResp<AppInfoResp>()::class.java,
             typeToken.type
             , callBack
         )
