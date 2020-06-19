@@ -50,7 +50,8 @@ object NetworkUtilKotlin {
         CommonUtil.getApp().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
-    private val networkInfo: NetworkInfoKotlin = NetworkInfoKotlin(false)
+    private val networkInfo: NetworkInfoKotlin =
+        NetworkInfoKotlin(false)
 
     @SuppressLint("MissingPermission")
     fun isConnect(): Boolean {
@@ -79,19 +80,25 @@ object NetworkUtilKotlin {
                 override fun onAvailable(network: Network?) {
                     super.onAvailable(network)
 //                    Log.i("cwtnetwork", "有网了")
-                    refreshIsConnect("registerNetworkListener")
+                    refreshIsConnect(
+                        "registerNetworkListener"
+                    )
                 }
 
                 override fun onUnavailable() {
                     super.onUnavailable()
 //                    Log.i("cwtnetwork", "没网了1")
-                    refreshIsConnect("registerNetworkListener")
+                    refreshIsConnect(
+                        "registerNetworkListener"
+                    )
                 }
 
                 override fun onLost(network: Network?) {
                     super.onLost(network)
 //                    Log.i("cwtnetwork", "没网了2")
-                    refreshIsConnect("registerNetworkListener")
+                    refreshIsConnect(
+                        "registerNetworkListener"
+                    )
                 }
             })
     }

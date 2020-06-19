@@ -1,9 +1,9 @@
-package com.sunsun.network
+package com.sunsun.network.template
 
 import android.content.Context
 import javax.net.ssl.SSLSocketFactory
 
-interface IIHttpManager<T> {
+interface IOKHttpFractory<T> {
 
     fun init(context: Context)
 

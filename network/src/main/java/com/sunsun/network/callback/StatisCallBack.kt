@@ -1,4 +1,4 @@
-package com.sunsun.network
+package com.sunsun.network.callback
 
 /**
  * 网络请求统一统计类

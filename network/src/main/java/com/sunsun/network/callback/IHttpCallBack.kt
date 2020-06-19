@@ -1,6 +1,7 @@
-package com.sunsun.network
+package com.sunsun.network.callback
 
-abstract class IHttpCallBack<T> : StatisCallBack<T>(), ICommonCallBack<T> {
+abstract class IHttpCallBack<T> : StatisCallBack<T>(),
+    ICommonCallBack<T> {
 
     override fun onFailure(errorStr: String?, code: Int, bean: T?) {
         onFailure(errorStr, code)

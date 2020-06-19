@@ -1,10 +1,11 @@
-package com.sunsun.network
+package com.sunsun.network.template
 
 import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Build
 import android.util.Log
+import com.sunsun.network.NetworkUtilKotlin
 import com.sunsun.network.receiver.NetworkStateChangeReceiver
 import com.sunsun.network.security.GzipRequestInterceptor
 import com.sunsun.network.security.RetryIntercepter
@@ -15,7 +16,8 @@ import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 
-class HttpManager<T : IHttpManager> : IIHttpManager<T> {
+class OKHttpFactory<T : INetworkTemplate> :
+    IOKHttpFractory<T> {
 
     protected val HTTP_IMPL_NORMAL = 0
     protected val HTTP_IMPL_OK_HTTP = 1 //HTTP_IMPL_OK_HTTP
@@ -30,36 +32,13 @@ class HttpManager<T : IHttpManager> : IIHttpManager<T> {
 
     protected var mOkHttpClient: OkHttpClient? = null
 
-    @Volatile
-    protected var instances: HttpManager<T>? = null
-    protected var mHttpManager: T? = null
-
-//    init {
-//        if (instances == null) {
-//            synchronized(HttpManager::class.java) {
-//                if (instances == null) {
-//                    instances = HttpManager()
-//                }
-//            }
-//        }
-//    }
+    protected var mINetworkTemplate: T? = null
 
     companion object {
-        val instance:  HttpManager<IHttpManager> by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            HttpManager<IHttpManager>() }
-//        private var instance: HttpManager<OKHttpManager>? = null
-//            get() {
-//                if (field == null) {
-//                    field = HttpManager<OKHttpManager>()
-//                }
-//                return field
-//            }
-//        fun get(): HttpManager<OKHttpManager>{
-//            //细心的小伙伴肯定发现了，这里不用getInstance作为为方法名，是因为在伴生对象声明时，内部已有getInstance方法，所以只能取其他名字
-//            return instance!!
-//        }
+        val instance: OKHttpFactory<INetworkTemplate> by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            OKHttpFactory<INetworkTemplate>()
+        }
     }
-
 
     override fun init(context: Context) {
         mOkHttpClient = OkHttpClient().newBuilder()
@@ -97,26 +76,30 @@ class HttpManager<T : IHttpManager> : IIHttpManager<T> {
     }
 
     override fun getBusinessHttpManger(): T? {
-        if (mHttpManager == null) {
+        if (mINetworkTemplate == null) {
             factoryHttpManager(HTTP_IMPL_OK_HTTP)
         }
-        return mHttpManager
+        return mINetworkTemplate
     }
 
 
-    fun factoryHttpManager(httpImpl: Int) {
-        when (httpImpl) {
-            HTTP_IMPL_OK_HTTP -> mHttpManager =
-                mOkHttpClient?.let { OKHttpManager(it) } as T
-            else -> {
+    fun factoryHttpManager(httpImpl: Int) = when (httpImpl) {
+        HTTP_IMPL_OK_HTTP -> {
+//            mHttpManager = (mOkHttpClient.let { OKHttpManager(it) }) as T
+            mINetworkTemplate = NetworkTemplate(
+                mOkHttpClient!!
+            ) as T
+        }
+        HTTP_IMPL_NORMAL -> {
 
-            }
+        } else ->{
+
         }
     }
 
     override fun evictAllRequest() {
-        if (mHttpManager != null) {
-            mHttpManager?.evictAll()
+        if (mINetworkTemplate != null) {
+            mINetworkTemplate?.evictAll()
         }
     }
 

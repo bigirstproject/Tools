@@ -1,19 +1,21 @@
-package com.sunsun.network
+package com.sunsun.network.template
 
 import BaseReq
+import com.sunsun.network.bean.BaseLoanResp
+import com.sunsun.network.callback.IHttpCallBack
 import okhttp3.Call
 import java.lang.reflect.Type
 
 
-interface IHttpManager {
+interface INetworkTemplate {
 
 
-    fun  <T>  checkNetwork(callBack: IHttpCallBack<T>?): Boolean
+    fun <T> checkNetwork(callBack: IHttpCallBack<T>?): Boolean
 
     fun <T> get(
         url: String?,
         bean: Class<T>?,
-        callBack: IHttpCallBack<T>?,
+        callBack: IHttpCallBack<in T>?,
         checkRepeat: Boolean
     )
 
@@ -22,7 +24,7 @@ interface IHttpManager {
         dataReq: BaseReq?,
         bean: Class<T>?,
         type: Type?,
-        callBack: IHttpCallBack<T>?,
+        callBack: IHttpCallBack<in T>?,
         checkRepeat: Boolean
     )
 
@@ -30,7 +32,7 @@ interface IHttpManager {
         url: String?,
         dataReq: BaseReq?,
         bean: Class<T>?,
-        callBack: IHttpCallBack<T>?
+        callBack: IHttpCallBack<in T>?
     )
 
     fun <T> post(
@@ -38,10 +40,8 @@ interface IHttpManager {
         dataReq: BaseReq?,
         bean: Class<T>?,
         type: Type?,
-        callBack: IHttpCallBack<T>?
+        callBack: IHttpCallBack<in T>?
     )
-
-
 
     fun <T> response(
         call: Call?,
@@ -49,7 +49,7 @@ interface IHttpManager {
         response: String?,
         bean: Class<T>?,
         type: Type?,
-        callBack: IHttpCallBack<T>?
+        callBack: IHttpCallBack<in T>?
     )
 
     fun <T> failure(
@@ -66,7 +66,6 @@ interface IHttpManager {
         bean: T?,
         callBack: IHttpCallBack<T>?
     )
-
 
     fun evictAll()
 

@@ -3,7 +3,7 @@ package com.sunsun.tools
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
-import com.sunsun.network.HttpManager
+import com.sunsun.network.template.OKHttpFactory
 
 class ToolsApplication() : Application() {
 
@@ -17,7 +17,7 @@ class ToolsApplication() : Application() {
             return
         }
         mInstance = this
-        HttpManager.instance.init(mInstance)
+        OKHttpFactory.instance.init(mInstance)
 
     }
 

@@ -1,6 +1,6 @@
 package com.sunsun.tools.demo.bean
 
-import com.sunsun.tools.basemvvm.bean.BaseReq
+import BaseReq
 
 
 /**
@@ -9,9 +9,9 @@ import com.sunsun.tools.basemvvm.bean.BaseReq
  * @Date 2020-02-11
  */
 data class CodeLoginReq(var mobile: String,
-                        var verifyCode: String,
-                        var verifyToken: String,
+                        var verifyCode: String?,
+                        var verifyToken: String?,
                         var grantType: Int = 1,
                         var subChannel:String?,
-                        var deviceType:Int =1  //标注android
+                        var deviceType:Int =1
  ): BaseReq()

@@ -1,14 +1,18 @@
-package com.sunsun.network
+package com.sunsun.network.template
 
 import BaseReq
 import android.text.TextUtils
 import android.util.Log
+import com.sunsun.network.callback.IHttpCallBack
+import com.sunsun.network.NetworkUtilKotlin
+import com.sunsun.network.R
+import com.sunsun.network.bean.BaseLoanResp
 import com.sunsun.network.util.*
 import okhttp3.*
 import java.io.IOException
 import java.lang.reflect.Type
 
-class OKHttpManager : IHttpManager {
+class NetworkTemplate : INetworkTemplate {
 
     protected val TAG = "OKHttpManager"
     protected val JSON =
@@ -54,10 +58,10 @@ class OKHttpManager : IHttpManager {
         return mIsNetworkConnected
     }
 
-    override fun <T> get(
+    override fun  <T> get(
         url: String?,
         bean: Class<T>?,
-        callBack: IHttpCallBack<T>?,
+        callBack: IHttpCallBack<in T>?,
         checkRepeat: Boolean
     ) {
         callBack?.url = url
@@ -116,27 +120,26 @@ class OKHttpManager : IHttpManager {
         dataReq: BaseReq?,
         bean: Class<T>?,
         type: Type?,
-        callBack: IHttpCallBack<T>?
+        callBack: IHttpCallBack<in T>?
     ) {
         post(url, dataReq, bean, type, callBack, true)
-
     }
 
-    override fun <T> post(
+    override fun  <T> post(
         url: String?,
         dataReq: BaseReq?,
         bean: Class<T>?,
-        callBack: IHttpCallBack<T>?
+        callBack: IHttpCallBack<in T>?
     ) {
         post(url, dataReq, bean, null, callBack, true)
     }
 
-    override fun <T> post(
+    override fun  <T> post(
         url: String?,
         dataReq: BaseReq?,
         bean: Class<T>?,
         type: Type?,
-        callBack: IHttpCallBack<T>?,
+        callBack: IHttpCallBack<in T>?,
         checkRepeat: Boolean
     ) {
         // 将参数放入callback中
@@ -210,17 +213,17 @@ class OKHttpManager : IHttpManager {
         mHashMap[url!!] = call
     }
 
-    override fun <T> response(
+    override fun  <T> response(
         call: Call?,
         code: Int,
         response: String?,
         bean: Class<T>?,
         type: Type?,
-        callBack: IHttpCallBack<T>?
+        callBack: IHttpCallBack<in T>?
     ) {
         // body 数据异常
         if (TextUtils.isEmpty(response)) {
-            failure<T>(
+            failure(
                 HttpCode.ERROR_CODE_RESPONSE_STRING,
                 ResourceUtil.getString(R.string.common_error_data),
                 HttpCode.ERROR_BUSINESS_CODE,
@@ -233,7 +236,7 @@ class OKHttpManager : IHttpManager {
         success(code, HttpCode.BUSINESS_CODE, resultBean, callBack)
     }
 
-    override fun <T> failure(
+    override fun  <T> failure(
         code: Int,
         msg: String?,
         bizOrNetCode: Int,
@@ -258,7 +261,8 @@ class OKHttpManager : IHttpManager {
         })
     }
 
-    override fun <T> success(code: Int, bizOrNetCode: Int, bean: T?, callBack: IHttpCallBack<T>?) {
+
+    override fun  <T> success(code: Int, bizOrNetCode: Int, bean: T?, callBack: IHttpCallBack<T>?) {
         ThreadManager.instance.post(ThreadManager.instance.THREAD_UI,
             Runnable { callBack?.onRespSuccess(code, bean) })
     }
@@ -281,12 +285,23 @@ class OKHttpManager : IHttpManager {
     }
 
 
-    override fun evictAll() {
-        TODO("Not yet implemented")
+    override fun evictCall(urlKey: String?) {
+        if (!TextUtils.isEmpty(urlKey)) {
+            val call = mHashMap[urlKey]
+            if (call != null && !call.isCanceled) {
+                mHashMap[urlKey]?.cancel()
+                mHashMap?.remove(urlKey)
+            }
+        }
     }
 
-    override fun evictCall(urlKey: String?) {
-        TODO("Not yet implemented")
+
+    override fun evictAll() {
+        if (mOkHttpClient != null) {
+            mOkHttpClient?.connectionPool()?.evictAll()
+        }
+        mHashMap?.clear()
     }
+
 
 }
