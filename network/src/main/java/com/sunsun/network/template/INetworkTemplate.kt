@@ -1,7 +1,7 @@
 package com.sunsun.network.template
 
-import BaseReq
 import com.sunsun.network.bean.BaseLoanResp
+import com.sunsun.network.bean.BaseReq
 import com.sunsun.network.callback.IHttpCallBack
 import okhttp3.Call
 import java.lang.reflect.Type

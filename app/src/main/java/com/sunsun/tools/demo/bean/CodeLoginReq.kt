@@ -1,6 +1,7 @@
 package com.sunsun.tools.demo.bean
 
-import BaseReq
+import com.sunsun.network.bean.BaseReq
+
 
 data class CodeLoginReq(var mobile: String,
                         var verifyCode: String?,

@@ -1,5 +1,6 @@
 package com.sunsun.tools.demo.bean
 
-import BaseReq
+import com.sunsun.network.bean.BaseReq
 
- data class AppInfoReq(var mobile: String): BaseReq()
+
+data class AppInfoReq(var mobile: String): BaseReq()

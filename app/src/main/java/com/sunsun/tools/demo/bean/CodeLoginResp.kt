@@ -1,6 +1,6 @@
 package com.sunsun.tools.demo.bean
 
-import BaseResp
+import com.sunsun.network.bean.BaseResp
 
 
 data class CodeLoginResp(var codeToken:String): BaseResp()

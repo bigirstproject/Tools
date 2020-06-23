@@ -1,11 +1,11 @@
 package com.sunsun.tools.demo.repository.impl
 
 import com.google.gson.reflect.TypeToken
+import com.sunsun.basemvvm.basemvvm.repository.BaseRepository
 import com.sunsun.network.bean.BaseLoanResp
 import com.sunsun.network.callback.IHttpCallBack
 import com.sunsun.network.template.INetworkTemplate
 import com.sunsun.network.template.OKHttpFactory
-import com.sunsun.tools.basemvvm.repository.BaseRepository
 import com.sunsun.tools.demo.bean.AppInfoReq
 import com.sunsun.tools.demo.bean.AppInfoResp
 import com.sunsun.tools.demo.repository.IAppInfoRequest

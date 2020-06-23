@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.sunsun.network.bean.BaseLoanResp
 import com.sunsun.network.callback.IHttpCallBack
-import com.sunsun.tools.basemvvm.viewmodel.BaseViewModel
+import com.sunsun.basemvvm.basemvvm.viewmodel.BaseViewModel
 import com.sunsun.tools.demo.bean.AppInfoReq
 import com.sunsun.tools.demo.bean.AppInfoResp
 import com.sunsun.tools.demo.repository.impl.AppInfoRequestImpl

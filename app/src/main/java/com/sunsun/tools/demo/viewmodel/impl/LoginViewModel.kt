@@ -4,13 +4,13 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.sunsun.network.bean.BaseLoanResp
 import com.sunsun.network.callback.IHttpCallBack
-import com.sunsun.tools.basemvvm.viewmodel.BaseViewModel
+import com.sunsun.basemvvm.basemvvm.viewmodel.BaseViewModel
 import com.sunsun.tools.demo.bean.CodeLoginReq
 import com.sunsun.tools.demo.bean.CodeLoginResp
 import com.sunsun.tools.demo.repository.impl.LoginRequestImpl
 import com.sunsun.tools.demo.viewmodel.ILoginViewModel
 
-class LoginViewModel(application: Application) : BaseViewModel(application), ILoginViewModel {
+class LoginViewModel(application: Application) :BaseViewModel(application), ILoginViewModel {
 
     var LoginRequest: LoginRequestImpl? = null
     var ResultLiveData: MutableLiveData<CodeLoginResp>? = null

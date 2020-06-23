@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.sunsun.basemvvm.basemvvm.ui.BaseMVVMActivity
 import com.sunsun.tools.R
-import com.sunsun.tools.basemvvm.ui.BaseMVVMActivity
 import com.sunsun.tools.databinding.ActivityLoginBinding
 import com.sunsun.tools.demo.bean.CodeLoginReq
 import com.sunsun.tools.demo.viewmodel.impl.LoginViewModel

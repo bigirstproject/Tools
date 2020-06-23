@@ -3,8 +3,8 @@ package com.sunsun.tools.demo.ui
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.sunsun.basemvvm.basemvvm.ui.BaseMVVMActivity
 import com.sunsun.tools.R
-import com.sunsun.tools.basemvvm.ui.BaseMVVMActivity
 import com.sunsun.tools.databinding.ActivityAppinfoBinding
 import com.sunsun.tools.demo.bean.AppInfoReq
 import com.sunsun.tools.demo.viewmodel.impl.AppInfoViewModel

@@ -1,12 +1,12 @@
 package com.sunsun.network.template
 
-import BaseReq
 import android.text.TextUtils
 import android.util.Log
 import com.sunsun.network.callback.IHttpCallBack
 import com.sunsun.network.NetworkUtilKotlin
 import com.sunsun.network.R
 import com.sunsun.network.bean.BaseLoanResp
+import com.sunsun.network.bean.BaseReq
 import com.sunsun.network.util.*
 import okhttp3.*
 import java.io.IOException
