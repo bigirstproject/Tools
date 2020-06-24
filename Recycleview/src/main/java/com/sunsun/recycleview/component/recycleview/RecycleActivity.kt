@@ -1,4 +1,6 @@
 package com.sunsun.recycleview.component.recycleview
 
-class RecycleActivity  {
+import com.sunsun.basemvvm.basemvvm.ui.BaseMVVMActivity
+
+class RecycleActivity {
 }

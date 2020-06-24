@@ -23,7 +23,7 @@ class HomePageRequestImpl : BaseRepository(), IHomePageRequest {
     ) {
         val data = ArrayList<IItem>()
         data.add(getMessageItem())
-        data.add(getMessageItem())
+        data.add(getBannerItem())
         val calldata: BaseLoanResp<HomeInfoResp> = BaseLoanResp<HomeInfoResp>()
         calldata.content = HomeInfoResp(data)
         callBack.onSuccess(200, calldata)

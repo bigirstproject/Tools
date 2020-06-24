@@ -11,7 +11,7 @@ import com.sunsun.recycleview.demo.bean.HomeInfoResp
 import com.sunsun.recycleview.demo.repository.impl.HomePageRequestImpl
 import com.sunsun.recycleview.demo.viewmode.IHomeViewMode
 
-class HomeViewMode(application: Application) : BaseViewModel(application) ,
+class HomeViewMode(application: Application) : BaseViewModel(application),
     IHomeViewMode {
 
 
@@ -19,6 +19,7 @@ class HomeViewMode(application: Application) : BaseViewModel(application) ,
         //小列表
 //        const val JUMP_SMALL_LIST = PageCodeConstant.PAGE_CODE_CREDIT
     }
+
     var mHomePageRequest: HomePageRequestImpl? = HomePageRequestImpl()
     var homeDataLiveData: MutableLiveData<ArrayList<IItem>>? = MutableLiveData()
     var errorHomeDataLiveData: MutableLiveData<String>? = MutableLiveData()
@@ -34,7 +35,8 @@ class HomeViewMode(application: Application) : BaseViewModel(application) ,
             }
 
             override fun onSuccess(code: Int, bean: BaseLoanResp<HomeInfoResp>?) {
-                homeDataLiveData?.value =  bean?.content?.itemlist
+                var aa: ArrayList<IItem>? = bean?.content?.itemlist
+                homeDataLiveData?.postValue(bean?.content?.itemlist)
             }
 
         })
@@ -42,9 +44,8 @@ class HomeViewMode(application: Application) : BaseViewModel(application) ,
 
     override fun destory() {
         homeDataLiveData = null
-        mHomePageRequest =null
+        mHomePageRequest = null
     }
-
 
 
 }

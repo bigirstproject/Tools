@@ -7,10 +7,20 @@
             type="com.sunsun.recycleview.component.bean.BannerItem" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/home_info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="获取数据"
+            android:textSize="22dp"
+            android:textColor="#ff000000" />
+
+    </LinearLayout>
 
 </layout>
