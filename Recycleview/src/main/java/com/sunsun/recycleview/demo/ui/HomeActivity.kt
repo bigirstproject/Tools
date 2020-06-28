@@ -1,5 +1,6 @@
 package com.sunsun.recycleview.demo.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
@@ -34,6 +35,12 @@ class HomeActivity() : BaseMVVMActivity<HomeViewMode, HomeLayoutBinding>() {
         home_info_button.setOnClickListener(){
             viewMode.getHomePageInfo(HomeInfoReq("15896464564"))
         }
+        repayment_button.setOnClickListener(){
+            val intent = Intent(MainActivity@ this, RepaymentActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+
         initUI()
     }
 

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="5dip"
+              android:layout_marginLeft="@dimen/common_margin"
+              android:layout_marginRight="@dimen/common_margin"
+              android:layout_marginTop="5dip"
+              android:background="#FFFFFFFF"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingRight="@dimen/common_margin">
+
+        <TextView
+            android:id="@+id/relayment_periods"
+            style="@style/text_view_wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/common_margin"
+            android:text=""
+            android:textColor="#FF000000"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/relayment_date"
+            style="@style/text_view_wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:textColor="#FF000000"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:background="#FFDEDEDE"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dip"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingRight="@dimen/common_margin">
+
+        <LinearLayout
+            android:id="@+id/first_part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/repayment_current_sum"
+                style="@style/text_view_wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:textColor="#FF000000"
+                android:textSize="21dp"/>
+
+            <TextView
+                android:id="@+id/repayment_current_sum_name"
+                style="@style/text_view_wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:text="本期应还"
+                android:textColor="#FF757575"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/second_part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="31dip"
+            android:layout_toRightOf="@id/first_part"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/repayment_total_sum"
+                style="@style/text_view_wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:textColor="#FF000000"
+                android:textSize="21dp"/>
+
+            <TextView
+                android:id="@+id/repayment_total_sum_name"
+                style="@style/text_view_wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:text="待还总金额"
+                android:textColor="#FF757575"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/repayment_button"
+                android:layout_width="75dip"
+                android:layout_height="30dip"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_replayment_btn_blue"
+                android:gravity="center"
+                android:text="立即还款"
+                android:textColor="#FFFFFF"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/repayment_status"
+                style="@style/text_view_wrap_content"
+                android:layout_width="75dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxHeight="150dip"
+                android:minWidth="75dip"
+                android:text="还款处理中"
+                android:textColor="#FF525252"
+                android:textSize="14dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/repayment_dis"
+        style="@style/text_view_wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="25dip"
+        android:layout_gravity="center"
+        android:gravity="left|top"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingRight="@dimen/common_margin"
+        android:text=""
+        android:textColor="#FFFF3200"
+        android:textSize="12dp"/>
+
+</LinearLayout>

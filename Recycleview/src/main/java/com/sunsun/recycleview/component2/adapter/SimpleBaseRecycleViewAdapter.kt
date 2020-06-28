@@ -10,7 +10,7 @@ import com.sunsun.recycleview.component2.bean.TypeBaseBean
 import java.lang.reflect.InvocationTargetException
 import java.util.*
 
-class SimpleBaseRecycleViewAdapter(view: View) :
+open class SimpleBaseRecycleViewAdapter():
     BaseRecycleViewAdapter<TypeBaseBean, MultiTypeViewHolder<TypeBaseBean>>() {
 
     val TYPE_DEFAULT = 10001
@@ -132,16 +132,16 @@ class SimpleBaseRecycleViewAdapter(view: View) :
                     holderClass.getConstructor(
                         View::class.java
                     )
-                val `object` = holderConstructor.newInstance(view)
-                if (`object` != null) {
-                    return `object` as MultiTypeViewHolder<TypeBaseBean>
+                var objects = holderConstructor.newInstance(view)
+                if (objects != null) {
+                    return objects as MultiTypeViewHolder<TypeBaseBean>
                 }
             }
         }
         return null
     }
 
-    fun onBindViewHolder(
+    override fun onBindViewHolder(
         holder: MultiTypeViewHolder<TypeBaseBean>,
         position: Int
     ) {
@@ -166,7 +166,7 @@ class SimpleBaseRecycleViewAdapter(view: View) :
         }
     }
 
-    fun onBindViewHolder(
+    override fun onBindViewHolder(
         holder: MultiTypeViewHolder<TypeBaseBean>,
         position: Int,
         payloads: List<Any?>

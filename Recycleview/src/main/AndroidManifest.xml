@@ -23,11 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--        <activity-->
-        <!--            android:name="com.sunsun.recycleview.demo.ui.HomeActivity"-->
-        <!--            android:configChanges="orientation|keyboardHidden|screenSize"-->
-        <!--            android:screenOrientation="portrait"-->
-        <!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>-->
+                <activity
+                    android:name="com.sunsun.recycleview.demo.ui.RepaymentActivity"
+                    android:configChanges="orientation|keyboardHidden|screenSize"
+                    android:screenOrientation="portrait"
+                    android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

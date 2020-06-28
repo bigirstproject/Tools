@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.sunsun.recycleview.demo.ui.ReplaymentAdapter" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF5F5F5"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_container"
+            style="@style/base_style_recycleview"
+            android:layout_height="match_parent"
+            app:adapter="@{adapter}"
+            app:layoutManager="LinearLayoutManager" />
+
+    </LinearLayout>
+
+</layout>
